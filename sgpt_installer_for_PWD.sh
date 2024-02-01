@@ -20,10 +20,10 @@ echo -e "Please enter the OPENAI API key (Check with Leon if you don't have any)
 read API_KEY
 if [[ -n $API_KEY ]]; then
 	if [[ ! -f root/.config/shell_gpt/.sgptrc ]]; then
-		mkdir -p root/.config/shell_gpt
-		touch root/.config/shell_gpt/.sgptrc
+		mkdir -p /root/.config/shell_gpt
+		touch /root/.config/shell_gpt/.sgptrc
 	fi
-	sed -i "1c "OPENAI_API_KEY=${API_KEY}"" root/.config/shell_gpt/.sgptrc
+	sed -i "1s "OPENAI_API_KEY=${API_KEY}"" /root/.config/shell_gpt/.sgptrc
 	[[ $? -eq 0 ]] && echo "INFO: API key inserted." || echo "ERROR: API key insertion failed!"
 else
 	echo "ERROR: The API key cannot be empty string!"
