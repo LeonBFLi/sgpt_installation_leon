@@ -24,6 +24,7 @@ if [[ -n $API_KEY ]]; then
 		mkdir -p /root/.config/shell_gpt
 		touch /root/.config/shell_gpt/.sgptrc
 	fi
+	sed -i '1a OPENAI_API_KEY' /root/.config/shell_gpt/.sgptrc
 	line_number_for_Key=$(awk '/OPENAI_API/{print NR}' /root/.config/shell_gpt/.sgptrc)
 	sed -i "${line_number_for_Key}c "OPENAI_API_KEY=${API_KEY}"" /root/.config/shell_gpt/.sgptrc
 	[[ $? -eq 0 ]] && echo "INFO: API key inserted." || echo "ERROR: API key insertion failed!"
