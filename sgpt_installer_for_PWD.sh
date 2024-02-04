@@ -26,6 +26,7 @@ if [[ -n $API_KEY ]]; then
 		touch /root/.config/shell_gpt/.sgptrc
 	fi
 	echo "OPENAI_API_KEY=" > /root/.config/shell_gpt/.sgptrc
+	echo "DEFAULT_MODEL=gpt-3.5-turbo" >> /root/.config/shell_gpt/.sgptrc
 	line_number_for_Key=$(awk '/OPENAI_API/{print NR}' /root/.config/shell_gpt/.sgptrc)
 	sed -i "${line_number_for_Key}c "OPENAI_API_KEY=${API_KEY}"" /root/.config/shell_gpt/.sgptrc
 	[[ $? -eq 0 ]] && echo "INFO: API key inserted." || echo "ERROR: API key insertion failed!"
