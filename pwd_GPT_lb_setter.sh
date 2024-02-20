@@ -7,7 +7,7 @@ prepared_img="andylbf/lb_pwd"
 #define functions
 function lb_container_starter(){
 echo "INFO: please open your port 80 for the access"
-docker pull $prepared_img && (docker run -itd --name lb -p 80:80 prepared_img)
+docker pull $prepared_img && (docker run -itd --name lb -p 80:80 $prepared_img)
 }
 
 
