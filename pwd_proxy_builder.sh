@@ -8,8 +8,8 @@ target_url=""
 function link_getter(){
 read -p "Please enter the page that you would like to access: " target_url
 if ! ping -c 1 $target_url 1>/dev/null 2>&1 ; then
-	echo "Warning: link unpingable!"
-#	exit
+	echo "ERROR: page not accessible"
+	exit
 fi
 }
 
@@ -21,38 +21,25 @@ function template_file_builder(){
 
 touch /tmp/nginx.conf
 cat << EOF > /tmp/nginx.conf
-
-user nginx;
-worker_processes auto;
-error_log /var/log/nginx/error.log;
-pid /run/nginx.pid;
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
 
 events {
-    worker_connections 1024;
+    worker_connections  1024;
 }
 
+
 http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
-                     '$status $body_bytes_sent "$http_referer" '
-                     '"$http_user_agent" "$http_x_forwarded_for"';
-    access_log /var/log/nginx/access.log main;
-    sendfile on;
-    #tcp_nopush on;
-    keepalive_timeout 65;
-    #gzip on;
+    access_log /var/log/nginx/access.log;
+
+    upstream backend {
+        server <IP_addr>;
+    }
 
     server {
         listen 80;
-       # server_name 8.219.249.154; # Replace with your domain or IP address
-
         location / {
-            proxy_pass <IP_addr>;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_pass http://backend/;
         }
     }
 }
