@@ -14,6 +14,7 @@ fi
 }
 
 function nginx_container_builder(){
+echo 123
 docker run -itd -p 80:80 --name nginx_proxy_server nginx 
 }
 
