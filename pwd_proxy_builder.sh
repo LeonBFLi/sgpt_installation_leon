@@ -9,7 +9,7 @@ function link_getter(){
 read -p "Please enter the page that you would like to access: " target_url
 if ! ping -c 1 $target_url 1>/dev/null 2>&1 ; then
 	echo "ERROR: page not accessible"
-	exit
+#	exit
 fi
 }
 
