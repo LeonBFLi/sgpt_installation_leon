@@ -41,6 +41,8 @@ http {
         location / {
             proxy_pass http://backend/;
         }
+
+        client_max_body_size 999M;
     }
 }
 EOF
