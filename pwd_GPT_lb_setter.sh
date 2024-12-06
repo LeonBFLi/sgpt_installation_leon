@@ -12,6 +12,7 @@ apk add nginx && apk add openrc --no-cache
 
 rc_softlevel_enabler(){
 if [[ ! -f /run/openrc/softlevel  ]]; then
+mkdir -p /run/openrc/
 touch /run/openrc/softlevel
 fi
 }
