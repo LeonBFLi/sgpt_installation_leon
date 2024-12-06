@@ -47,7 +47,7 @@ EOF
 
 function service_starter(){
 echo "INFO: $(nginx -t)"
-rc-service nginx restart
+rc-service nginx start
 echo "INFO: please access the page via port 80"
 }
 
