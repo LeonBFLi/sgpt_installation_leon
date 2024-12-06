@@ -48,7 +48,7 @@ EOF
 
 function service_starter(){
 echo "INFO: $(nginx -t)"
-rc-status && rc-service nginx start
+rc-status && rc-service nginx start ###need to run rc-status first to initialise the /run/openrc dir
 echo "INFO: please access the page via port 80"
 }
 
