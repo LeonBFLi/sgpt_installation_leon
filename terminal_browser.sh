@@ -2,7 +2,7 @@
 #function using the 'https://github.com/fathyb/carbonyl' project to run a terminal bowser contianer
 
 ##Define variables
-url=$1
+url=$1  #adding user-put as the first positional argument
 
 ##Defind functions
 function args_parser(){
